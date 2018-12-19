@@ -46,17 +46,13 @@ namespace ObjectEqual
 
                 for (var i = 0; i < sourceCount; i++)
                 {
-                    foreach (var equality in EqualityCollection.Equalities)
-                    {
-                        if (equality.MatchCondition(source))
-                        {
-                            var result = equality.IsEqual(sourceCollection[i], targetCollection[i]);
+                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceCollection[i]));
 
-                            if (!result)
-                            {
-                                return false;
-                            }
-                        }
+                    var result = equality.IsEqual(sourceCollection[i], targetCollection[i]);
+
+                    if (!result)
+                    {
+                        return false;
                     }
                 }
             }

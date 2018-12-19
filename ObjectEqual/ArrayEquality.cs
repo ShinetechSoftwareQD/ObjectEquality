@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ObjectEqual
 {
@@ -26,17 +27,13 @@ namespace ObjectEqual
 
             for (var i = 0; i < s.Length; i++)
             {
-                foreach (var equality in EqualityCollection.Equalities)
-                {
-                    if (equality.MatchCondition(s.GetValue(i)))
-                    {
-                        var result = equality.IsEqual(s.GetValue(i), t.GetValue(i));
+                var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(s.GetValue(i)));
 
-                        if (!result)
-                        {
-                            return false;
-                        }
-                    }
+                var result = equality.IsEqual(s.GetValue(i), t.GetValue(i));
+
+                if (!result)
+                {
+                    return false;
                 }
             }
 

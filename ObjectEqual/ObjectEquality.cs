@@ -9,20 +9,14 @@ namespace ObjectEqual
     {
         public bool IsEqual(object source, object target)
         {
-            foreach (var equality in EqualityCollection.Equalities)
+            if (source.GetType() != target.GetType())
             {
-                if (equality.MatchCondition(source))
-                {
-                    var result = equality.IsEqual(source, target);
-
-                    if (!result)
-                    {
-                        return false;
-                    }
-                }
+                return false;
             }
 
-            return true;
+            var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(source));
+
+            return equality.IsEqual(source, target);
         }
     }
 }

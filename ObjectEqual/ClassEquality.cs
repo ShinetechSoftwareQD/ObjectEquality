@@ -22,17 +22,14 @@ namespace ObjectEqual
 
             foreach (var prop in type.GetProperties())
             {
-                foreach (var equality in EqualityCollection.Equalities)
-                {
-                    if (equality.MatchCondition(source))
-                    {
-                        var result = equality.IsEqual(prop.GetValue(source), prop.GetValue(target));
+                var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(prop.GetValue(source)));
 
-                        if (!result)
-                        {
-                            return false;
-                        }
-                    }
+
+                var result = equality.IsEqual(prop.GetValue(source), prop.GetValue(target));
+
+                if (!result)
+                {
+                    return false;
                 }
             }
 
