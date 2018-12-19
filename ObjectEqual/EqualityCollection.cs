@@ -10,7 +10,8 @@ namespace ObjectEqual
             new TypeEquality(),
             new ValueTypeEquality(),
             new ArrayEquality(),
-            new GenericCollectionEquality()
+            new GenericCollectionEquality(),
+            new ClassEquality()
         };
     }
 }
