@@ -7,6 +7,16 @@ namespace ObjectEquality
 {
     public class ObjectEquality
     {
+        public ObjectEquality()
+        {
+
+        }
+
+        public ObjectEquality(ObjectEqualityOption option)
+        {
+            ObjectEqualityOption.Current = option;
+        }
+
         public bool IsEqual(object source, object target)
         {
             if (source.GetType() != target.GetType())

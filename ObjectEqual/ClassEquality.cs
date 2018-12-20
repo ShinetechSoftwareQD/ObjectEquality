@@ -24,7 +24,6 @@ namespace ObjectEquality
             {
                 var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(prop.GetValue(source)));
 
-
                 var result = equality.IsEqual(prop.GetValue(source), prop.GetValue(target));
 
                 if (!result)

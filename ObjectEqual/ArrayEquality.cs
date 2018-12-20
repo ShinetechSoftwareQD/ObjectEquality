@@ -27,13 +27,20 @@ namespace ObjectEquality
 
             for (var i = 0; i < s.Length; i++)
             {
-                var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(s.GetValue(i)));
-
-                var result = equality.IsEqual(s.GetValue(i), t.GetValue(i));
-
-                if (!result)
+                if (ObjectEqualityOption.Current.ArrayEqualityMode == ArrayEqualityMode.Strict)
                 {
-                    return false;
+                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(s.GetValue(i)));
+
+                    var result = equality.IsEqual(s.GetValue(i), t.GetValue(i));
+
+                    if (!result)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+
                 }
             }
 
