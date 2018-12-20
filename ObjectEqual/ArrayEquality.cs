@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ObjectEqual
 {
-    public class ArrayEquality : IEquality
+    internal class ArrayEquality : IEquality
     {
         public Func<object, bool> MatchCondition
         {

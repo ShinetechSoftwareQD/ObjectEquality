@@ -14,6 +14,19 @@ namespace ObjectEqual
                 return false;
             }
 
+            if (source == null && target == null)
+            {
+                return true;
+            }
+            else if (source == null && target != null)
+            {
+                return false;
+            }
+            else if (source != null && target == null)
+            {
+                return false;
+            }
+
             var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(source));
 
             return equality.IsEqual(source, target);

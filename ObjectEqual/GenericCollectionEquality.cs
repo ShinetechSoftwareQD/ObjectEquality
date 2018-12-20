@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ObjectEqual
 {
-    public class GenericCollectionEquality : IEquality
+    internal class GenericCollectionEquality : IEquality
     {
         public Func<object, bool> MatchCondition
         {
@@ -25,13 +25,6 @@ namespace ObjectEqual
             if (type.GetInterfaces().Any(p => p == genericCollectionType))
             {
                 var countMethod = type.GetMethod("get_Count");
-
-                if (
-                    (source == null && target != null)
-                    || (source != null && target == null))
-                {
-                    return false;
-                }
 
                 var sourceCount = (int)countMethod.Invoke(source, null);
                 var targetCount = (int)countMethod.Invoke(target, null);

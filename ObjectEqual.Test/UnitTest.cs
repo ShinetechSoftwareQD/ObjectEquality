@@ -104,7 +104,6 @@ namespace ObjectEqual.Test
             Assert.IsTrue(_objectEquality.IsEqual(a, b));
         }
 
-
         [TestMethod]
         public void TestComplexClassError()
         {
@@ -124,7 +123,7 @@ namespace ObjectEqual.Test
         }
 
         [TestMethod]
-        public void TestEnumClass()
+        public void TestEnumInClass()
         {
             var a = new EnumClass
             {
@@ -140,7 +139,7 @@ namespace ObjectEqual.Test
         }
 
         [TestMethod]
-        public void TestEnumClassError()
+        public void TestEnumInClassError()
         {
             var a = new EnumClass
             {
@@ -151,6 +150,26 @@ namespace ObjectEqual.Test
             {
                 Test = TestEnum.B
             };
+
+            Assert.IsTrue(!_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestEnumValue()
+        {
+            var a = TestEnum.A;
+
+            var b = TestEnum.A;
+
+            Assert.IsTrue(_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestEnumValueError()
+        {
+            var a = TestEnum.A;
+
+            var b = TestEnum.B;
 
             Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }

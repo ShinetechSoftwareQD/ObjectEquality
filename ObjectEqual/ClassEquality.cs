@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ObjectEqual
 {
-    public class ClassEquality : IEquality
+    internal class ClassEquality : IEquality
     {
         public Func<object, bool> MatchCondition
         {
