@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectEqual", "ObjectEqual\ObjectEqual.csproj", "{1ADD939D-C931-417E-8B0A-CCAA82506890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectEquality", "ObjectEqual\ObjectEquality.csproj", "{1ADD939D-C931-417E-8B0A-CCAA82506890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectEqual.Test", "ObjectEqual.Test\ObjectEqual.Test.csproj", "{4CBF75A7-79F4-4089-B916-F4DBCCC2F01F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectEquality.Test", "ObjectEqual.Test\ObjectEquality.Test.csproj", "{4CBF75A7-79F4-4089-B916-F4DBCCC2F01F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

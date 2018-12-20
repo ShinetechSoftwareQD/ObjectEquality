@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ObjectEqual\ObjectEqual.csproj" />
+    <ProjectReference Include="..\ObjectEqual\ObjectEquality.csproj" />
   </ItemGroup>
 
 </Project>

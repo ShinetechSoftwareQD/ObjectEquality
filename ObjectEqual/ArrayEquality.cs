@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace ObjectEqual
+namespace ObjectEquality
 {
     internal class ArrayEquality : IEquality
     {

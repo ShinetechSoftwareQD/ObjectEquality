@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ObjectEqual
+namespace ObjectEquality
 {
     public static class EqualityCollection
     {

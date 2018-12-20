@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ObjectEqual.Test
+namespace ObjectEquality.Test
 {
     [TestClass]
     public class UnitTest

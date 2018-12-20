@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ObjectEqual.Test
+namespace ObjectEquality.Test
 {
     public class ComplexClass
     {
