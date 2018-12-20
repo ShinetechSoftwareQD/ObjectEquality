@@ -49,7 +49,6 @@ namespace ObjectEquality.Test
             Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }
 
-
         [TestMethod]
         public void TestSimpleClass()
         {
@@ -170,6 +169,74 @@ namespace ObjectEquality.Test
             var a = TestEnum.A;
 
             var b = TestEnum.B;
+
+            Assert.IsTrue(!_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestStruct()
+        {
+            var a = new DemoStruct();
+            a.Id = 1;
+            a.Name = "Test";
+
+            var b = new DemoStruct();
+            b.Id = 1;
+            b.Name = "Test";
+
+            Assert.IsTrue(_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestStructError()
+        {
+            var a = new DemoStruct();
+            a.Id = 1;
+            a.Name = "Test";
+
+            var b = new DemoStruct();
+            b.Id = 2;
+            b.Name = "Test";
+
+            Assert.IsTrue(!_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestStructWithClass()
+        {
+            var a = new StructWithClass();
+            a.SimpleClass = new SimpleClass
+            {
+                Id = 1,
+                Name = "Test"
+            };
+
+            var b = new StructWithClass();
+            b.SimpleClass = new SimpleClass
+            {
+                Id = 1,
+                Name = "Test"
+            };
+
+            Assert.IsTrue(_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestStructWithClassError()
+        {
+            var a = new StructWithClass();
+            a.SimpleClass = new SimpleClass
+            {
+                Id = 1,
+                Name = "Test"
+            };
+
+            var b = new StructWithClass();
+            b.SimpleClass = new SimpleClass
+            {
+                Id = 2,
+                Name = "Test"
+            };
 
             Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }
