@@ -34,7 +34,7 @@ var a = new int[] { 1, 2, 3 };
 var b = new int[] { 2, 1, 3 };
 var c = new int[] { 1, 1, 3 };
 
-ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
+ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
 var objectEquality = new ObjectEquality();
 objectEquality.IsEqual(a,b); //true
 objectEquality.IsEqual(a,c); //false
