@@ -240,6 +240,28 @@ namespace ObjectEquality.Test
 
             Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }
+
+        [TestMethod]
+        public void TestLooseArray()
+        {
+            var a = new int[] { 1, 2, 3 };
+            var b = new int[] { 2, 1, 3 };
+
+            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
+            var objectEquality = new ObjectEquality();
+            Assert.IsTrue(objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestLooseArrayError()
+        {
+            var a = new int[] { 1, 2, 3 };
+            var b = new int[] { 1, 1, 3 };
+
+            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
+            var objectEquality = new ObjectEquality();
+            Assert.IsTrue(!objectEquality.IsEqual(a, b));
+        }
     }
 
 

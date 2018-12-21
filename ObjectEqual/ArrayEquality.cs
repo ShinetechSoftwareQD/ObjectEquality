@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Collections;
 
 namespace ObjectEquality
 {
@@ -25,9 +26,9 @@ namespace ObjectEquality
                 return false;
             }
 
-            for (var i = 0; i < s.Length; i++)
+            if (ObjectEqualityOption.Current.ArrayEqualityMode == ArrayEqualityMode.Strict)
             {
-                if (ObjectEqualityOption.Current.ArrayEqualityMode == ArrayEqualityMode.Strict)
+                for (var i = 0; i < s.Length; i++)
                 {
                     var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(s.GetValue(i)));
 
@@ -38,9 +39,43 @@ namespace ObjectEquality
                         return false;
                     }
                 }
-                else
-                {
+            }
+            else
+            {
+                return CheckSameItems(s, t);
+            }
 
+            return true;
+        }
+
+        private bool CheckSameItems(Array source, Array target)
+        {
+            var matchedItems = new List<object>();
+
+            for (var i = 0; i < source.Length; i++)
+            {
+                var matched = false;
+
+                for (var j = 0; j < target.Length; j++)
+                {
+                    if (!matchedItems.Any(p => p.Equals(target.GetValue(j))))
+                    {
+                        var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(source.GetValue(i)));
+
+                        var result = equality.IsEqual(source.GetValue(i), target.GetValue(j));
+
+                        if (result)
+                        {
+                            matchedItems.Add(target.GetValue(j));
+                            matched = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!matched)
+                {
+                    return false;
                 }
             }
 
