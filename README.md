@@ -17,11 +17,12 @@ Example:
 ```
 var a = new int[]{1,2,3};
 var b = new int[]{1,2,3};
-var c = new int[]{1,2,4}
+var c = new int[]{1,2,4};
 
 var objectEquality = new ObjectEquality();
 objectEquality.IsEqual(a,b); //true
 objectEquality.IsEqual(a,c); //false
+```
 
 ### Check Array object(Loose mode)
 
