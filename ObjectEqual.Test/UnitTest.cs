@@ -262,6 +262,29 @@ namespace ObjectEquality.Test
             var objectEquality = new ObjectEquality();
             Assert.IsTrue(!objectEquality.IsEqual(a, b));
         }
+
+
+        [TestMethod]
+        public void TestStrictArray()
+        {
+            var a = new int[] { 1, 2, 3 };
+            var b = new int[] { 2, 1, 3 };
+
+            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
+            var objectEquality = new ObjectEquality();
+            Assert.IsTrue(!objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestStrictArrayError()
+        {
+            var a = new int[] { 1, 2, 3 };
+            var b = new int[] { 1, 1, 3 };
+
+            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
+            var objectEquality = new ObjectEquality();
+            Assert.IsTrue(!objectEquality.IsEqual(a, b));
+        }
     }
 
 
