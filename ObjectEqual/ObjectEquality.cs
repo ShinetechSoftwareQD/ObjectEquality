@@ -12,9 +12,9 @@ namespace ObjectEquality
 
         }
 
-        public ObjectEquality(ObjectEqualityOption option)
+        public ObjectEquality(ObjectEqualityOptions option)
         {
-            ObjectEqualityOption.Current = option;
+            ObjectEqualityOptions.Current = option;
         }
 
         public bool IsEqual(object source, object target)

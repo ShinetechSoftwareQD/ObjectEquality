@@ -26,7 +26,7 @@ namespace ObjectEquality
                 return false;
             }
 
-            if (ObjectEqualityOption.Current.ArrayEqualityMode == ArrayEqualityMode.Strict)
+            if (ObjectEqualityOptions.Current.ArrayEqualityMode == ArrayEqualityMode.Strict)
             {
                 for (var i = 0; i < s.Length; i++)
                 {

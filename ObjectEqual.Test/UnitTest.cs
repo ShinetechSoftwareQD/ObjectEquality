@@ -247,7 +247,7 @@ namespace ObjectEquality.Test
             var a = new int[] { 1, 2, 3 };
             var b = new int[] { 2, 1, 3 };
 
-            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
+            ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
             var objectEquality = new ObjectEquality();
             Assert.IsTrue(objectEquality.IsEqual(a, b));
         }
@@ -258,7 +258,7 @@ namespace ObjectEquality.Test
             var a = new int[] { 1, 2, 3 };
             var b = new int[] { 1, 1, 3 };
 
-            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
+            ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Loose;
             var objectEquality = new ObjectEquality();
             Assert.IsTrue(!objectEquality.IsEqual(a, b));
         }
@@ -270,7 +270,7 @@ namespace ObjectEquality.Test
             var a = new int[] { 1, 2, 3 };
             var b = new int[] { 2, 1, 3 };
 
-            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
+            ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
             var objectEquality = new ObjectEquality();
             Assert.IsTrue(!objectEquality.IsEqual(a, b));
         }
@@ -281,7 +281,7 @@ namespace ObjectEquality.Test
             var a = new int[] { 1, 2, 3 };
             var b = new int[] { 1, 1, 3 };
 
-            ObjectEqualityOption.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
+            ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
             var objectEquality = new ObjectEquality();
             Assert.IsTrue(!objectEquality.IsEqual(a, b));
         }

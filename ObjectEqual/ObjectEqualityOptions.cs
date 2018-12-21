@@ -4,19 +4,19 @@ using System.Text;
 
 namespace ObjectEquality
 {
-    public class ObjectEqualityOption
+    public class ObjectEqualityOptions
     {
         public ArrayEqualityMode ArrayEqualityMode
         {
             get; set;
         }
 
-        public static ObjectEqualityOption Default { get; } = new ObjectEqualityOption
+        public static ObjectEqualityOptions Default { get; } = new ObjectEqualityOptions
         {
             ArrayEqualityMode = ArrayEqualityMode.Strict
         };
 
-        public static ObjectEqualityOption Current
+        public static ObjectEqualityOptions Current
         {
             get; set;
         } = Default;
