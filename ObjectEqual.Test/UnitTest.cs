@@ -7,6 +7,8 @@ namespace ObjectEquality.Test
     {
         private ObjectEquality _objectEquality = null;
 
+
+
         [TestInitialize]
         public void SetEquality()
         {
@@ -284,6 +286,24 @@ namespace ObjectEquality.Test
             ObjectEqualityOptions.Current.ArrayEqualityMode = ArrayEqualityMode.Strict;
             var objectEquality = new ObjectEquality();
             Assert.IsTrue(!objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestString()
+        {
+            var a = "a";
+            var b = "a";
+
+            Assert.IsTrue(_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestStringError()
+        {
+            var a = "a";
+            var b = "b";
+
+            Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }
     }
 
