@@ -11,9 +11,15 @@ namespace ObjectEquality
             get; set;
         }
 
+        public CollectionEqualityMode CollectionEqualityMode
+        {
+            get; set;
+        }
+
         public static ObjectEqualityOptions Default { get; } = new ObjectEqualityOptions
         {
-            ArrayEqualityMode = ArrayEqualityMode.Strict
+            ArrayEqualityMode = ArrayEqualityMode.Strict,
+            CollectionEqualityMode = CollectionEqualityMode.Strict
         };
 
         public static ObjectEqualityOptions Current

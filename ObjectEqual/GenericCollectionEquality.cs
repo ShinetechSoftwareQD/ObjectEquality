@@ -37,16 +37,57 @@ namespace ObjectEquality
                 var sourceCollection = (source as IEnumerable<object>).ToList();
                 var targetCollection = (target as IEnumerable<object>).ToList();
 
-                for (var i = 0; i < sourceCount; i++)
+                if (ObjectEqualityOptions.Current.CollectionEqualityMode == CollectionEqualityMode.Strict)
                 {
-                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceCollection[i]));
-
-                    var result = equality.IsEqual(sourceCollection[i], targetCollection[i]);
-
-                    if (!result)
+                    for (var i = 0; i < sourceCount; i++)
                     {
-                        return false;
+                        var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceCollection[i]));
+
+                        var result = equality.IsEqual(sourceCollection[i], targetCollection[i]);
+
+                        if (!result)
+                        {
+                            return false;
+                        }
                     }
+                }
+                else
+                {
+                    return CheckSameItems(sourceCollection, targetCollection);
+                }
+            }
+
+            return true;
+        }
+
+        private bool CheckSameItems(IEnumerable<object> source, IEnumerable<object> target)
+        {
+            var matchedItems = new List<object>();
+
+            foreach (var sourceItem in source)
+            {
+                var matched = false;
+
+                var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceItem));
+
+                foreach (var targetItem in target)
+                {
+                    if (!matchedItems.Any(p => p.Equals(targetItem)))
+                    {
+                        var result = equality.IsEqual(sourceItem, targetItem);
+
+                        if (result)
+                        {
+                            matchedItems.Add(targetItem);
+                            matched = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!matched)
+                {
+                    return false;
                 }
             }
 
