@@ -305,6 +305,27 @@ namespace ObjectEquality.Test
 
             Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }
+
+        [TestMethod]
+        public void TestLoop()
+        {
+            var wrappedClassA = new WrappedClass
+            {
+                Field = "A"
+            };
+
+            wrappedClassA.Inner = wrappedClassA;
+
+
+            var wrappedClassB = new WrappedClass
+            {
+                Field = "A"
+            };
+
+            wrappedClassB.Inner = wrappedClassB;
+
+            Assert.IsTrue(_objectEquality.IsEqual(wrappedClassA, wrappedClassB));
+        }
     }
 
 

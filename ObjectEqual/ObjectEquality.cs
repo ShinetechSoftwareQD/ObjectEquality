@@ -7,6 +7,8 @@ namespace ObjectEquality
 {
     public class ObjectEquality
     {
+        internal static List<object> ReferenceObjects = new List<object>();
+
         public ObjectEquality()
         {
 
@@ -17,8 +19,15 @@ namespace ObjectEquality
             ObjectEqualityOptions.Current = option;
         }
 
+        private void ResetReferenceObjects()
+        {
+            ReferenceObjects = null;
+        }
+
         public bool IsEqual(object source, object target)
         {
+            ResetReferenceObjects();
+
             if (source.GetType() != target.GetType())
             {
                 return false;
