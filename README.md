@@ -1,4 +1,4 @@
-# ObjectEquality v1.0.2
+# ObjectEquality v1.0.3
 A open-source library to compare whether two object are same
 
 ## How to use it?
