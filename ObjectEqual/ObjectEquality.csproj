@@ -9,14 +9,18 @@
     <PackageProjectUrl>https://github.com/lamondlu/ObjectEquality</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lamondlu/ObjectEquality</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <PackageReleaseNotes>v1.0.1
 
 - Support struct equality 
 - Support enum equality
 
 v1.0.2
-- Support loose and strict option for array</PackageReleaseNotes>
+- Support loose and strict option for array
+
+v1.0.3
+- Add ObjectExtension
+- Add exception for cycle-reference.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
