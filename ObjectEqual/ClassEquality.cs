@@ -20,6 +20,14 @@ namespace ObjectEquality
         {
             var type = source.GetType();
 
+            if (ObjectEquality.ReferenceObjects.Any(p => p == source || p == target))
+            {
+                throw new CycleReferenceException();
+            }
+
+            ObjectEquality.ReferenceObjects.Add(source);
+            ObjectEquality.ReferenceObjects.Add(target);
+
             foreach (var prop in type.GetProperties())
             {
                 var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(prop.GetValue(source)));

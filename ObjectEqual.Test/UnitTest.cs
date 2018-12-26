@@ -307,24 +307,28 @@ namespace ObjectEquality.Test
         }
 
         [TestMethod]
-        public void TestLoop()
+        public void TestCycleReferenceException()
         {
-            var wrappedClassA = new WrappedClass
+            Assert.ThrowsException<CycleReferenceException>(() =>
             {
-                Field = "A"
-            };
+                var wrappedClassA = new WrappedClass
+                {
+                    Field = "A"
+                };
 
-            wrappedClassA.Inner = wrappedClassA;
+                wrappedClassA.Inner = wrappedClassA;
 
 
-            var wrappedClassB = new WrappedClass
-            {
-                Field = "A"
-            };
+                var wrappedClassB = new WrappedClass
+                {
+                    Field = "A"
+                };
 
-            wrappedClassB.Inner = wrappedClassB;
+                wrappedClassB.Inner = wrappedClassB;
 
-            Assert.IsTrue(_objectEquality.IsEqual(wrappedClassA, wrappedClassB));
+                _objectEquality.IsEqual(wrappedClassA, wrappedClassB);
+            });
+
         }
     }
 

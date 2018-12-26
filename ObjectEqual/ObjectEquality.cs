@@ -21,7 +21,7 @@ namespace ObjectEquality
 
         private void ResetReferenceObjects()
         {
-            ReferenceObjects = null;
+            ReferenceObjects = new List<object>();
         }
 
         public bool IsEqual(object source, object target)
