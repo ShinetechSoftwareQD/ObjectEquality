@@ -9,24 +9,11 @@
     <PackageProjectUrl>https://github.com/lamondlu/ObjectEquality</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lamondlu/ObjectEquality</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>1.0.5</Version>
-    <PackageReleaseNotes>v1.0.1
+    <Version>1.0.6</Version>
+    <PackageReleaseNotes>v1.0.6
 
-- Support struct equality 
-- Support enum equality
-
-v1.0.2
-- Support loose and strict option for array
-
-v1.0.3
-- Add ObjectExtension
-- Add exception for cycle-reference.
-
-v1.0.4
-- Support loose and strict option for collection
-
-v1.0.5
-- Support two dimension array</PackageReleaseNotes>
+- Fix the generic collection issue
+- Add support for tuple class</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/lamondlu/ObjectEquality/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 

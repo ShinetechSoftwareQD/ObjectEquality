@@ -51,17 +51,20 @@ namespace ObjectEquality
 
             //var genericType = type.GetGenericArguments()[0];
             //var genericCollectionType = typeof(IEnumerable<>).MakeGenericType(genericType);
-
-            var sourceCollection = source as IEnumerable<object>;
-            var targetCollection = target as IEnumerable<object>;
+            var method = type.GetMethod("ToArray");
+            var sourceCollection = (Array)method.Invoke(source, null);
+            var targetCollection = (Array)method.Invoke(target, null);
 
             if (ObjectEqualityOptions.Current.CollectionEqualityMode == CollectionEqualityMode.Strict)
             {
                 for (var i = 0; i < sourceCount; i++)
                 {
-                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceCollection.ElementAt(i)));
+                    var sourceItem = sourceCollection.GetValue(i);
+                    var targetItem = targetCollection.GetValue(i);
 
-                    var result = equality.IsEqual(sourceCollection.ElementAt(i), targetCollection.ElementAt(i));
+                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceItem));
+
+                    var result = equality.IsEqual(sourceItem, targetItem);
 
                     if (!result)
                     {
@@ -77,7 +80,7 @@ namespace ObjectEquality
             return true;
         }
 
-        private bool CheckSameItems(IEnumerable<object> source, IEnumerable<object> target)
+        private bool CheckSameItems(Array source, Array target)
         {
             var matchedItems = new List<object>();
 
