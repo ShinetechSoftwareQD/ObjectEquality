@@ -1,5 +1,13 @@
-# ObjectEquality v1.0.5
+# ObjectEquality v1.0.6
 A open-source library to compare whether two object are same
+
+## Support TYPE
+- Value Type
+- Class
+- Generic Collection(Strict/Loose)
+- Array(Strict/Loose)
+- Tuple
+- Struct
 
 ## How to use it?
 
