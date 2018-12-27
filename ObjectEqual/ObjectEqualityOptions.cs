@@ -11,10 +11,12 @@ namespace ObjectEquality
             get; set;
         }
 
+
         public CollectionEqualityMode CollectionEqualityMode
         {
             get; set;
         }
+
 
         public static ObjectEqualityOptions Default { get; } = new ObjectEqualityOptions
         {
@@ -22,9 +24,13 @@ namespace ObjectEquality
             CollectionEqualityMode = CollectionEqualityMode.Strict
         };
 
+
         public static ObjectEqualityOptions Current
         {
             get; set;
         } = Default;
+
+
+        public static List<IEquality> Equalities { get; } = EqualityCollection.Equalities;
     }
 }
