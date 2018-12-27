@@ -1,4 +1,4 @@
-# ObjectEquality v1.0.3
+# ObjectEquality v1.0.5
 A open-source library to compare whether two object are same
 
 ## How to use it?
@@ -40,6 +40,24 @@ objectEquality.IsEqual(a,b); //true
 objectEquality.IsEqual(a,c); //false
 
 ```
+
+### Check two dimension array
+
+Example
+```
+
+var arrayA = new int[2, 3] { { 1, 1, 1 }, { 2, 2, 2 } };
+var arrayB = new int[2, 3] { { 1, 1, 1 }, { 2, 2, 2 } };
+var arrayC = new int[2, 3] { { 1, 1, 2 }, { 2, 2, 2 } };
+
+arrayA.IsEqual(arrayB); //true
+arrayA.IsEqual(arrayC); //false
+
+```
+
+> We only support strict mode for two dimension array. 
+
+
 
 ### Check Simple Class object
 
