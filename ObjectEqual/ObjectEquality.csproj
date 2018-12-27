@@ -9,7 +9,7 @@
     <PackageProjectUrl>https://github.com/lamondlu/ObjectEquality</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lamondlu/ObjectEquality</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <PackageReleaseNotes>v1.0.1
 
 - Support struct equality 
@@ -23,7 +23,10 @@ v1.0.3
 - Add exception for cycle-reference.
 
 v1.0.4
-- Support loose and strict option for collection</PackageReleaseNotes>
+- Support loose and strict option for collection
+
+v1.0.5
+- Support two dimension array</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/lamondlu/ObjectEquality/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
