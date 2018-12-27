@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 
 namespace ObjectEquality.Test
 {
@@ -347,6 +349,60 @@ namespace ObjectEquality.Test
             var arrayB = new int[2, 3] { { 1, 1, 3 }, { 2, 2, 3 } };
 
             Assert.IsFalse(_objectEquality.IsEqual(arrayA, arrayB));
+        }
+
+        [TestMethod]
+        public void TestTuple()
+        {
+            var tupleA = new Tuple<int, int, int>(1, 2, 3);
+            var tupleB = new Tuple<int, int, int>(1, 2, 3);
+
+            Assert.IsTrue(_objectEquality.IsEqual(tupleA, tupleB));
+        }
+
+        [TestMethod]
+        public void TestTupleError()
+        {
+            var tupleA = new Tuple<int, int, int>(1, 2, 3);
+            var tupleB = new Tuple<int, int, int>(1, 2, 4);
+
+            Assert.IsFalse(_objectEquality.IsEqual(tupleA, tupleB));
+        }
+
+        [TestMethod]
+        public void TestValueTypeCollection()
+        {
+            var collectionA = new List<int> { 1, 2, 3 };
+            var collectionB = new List<int> { 1, 2, 3 };
+
+            Assert.IsTrue(_objectEquality.IsEqual(collectionA, collectionB));
+        }
+
+        [TestMethod]
+        public void TestValueTypeCollectionError()
+        {
+            var collectionA = new List<int> { 1, 2, 3 };
+            var collectionB = new List<int> { 1, 2, 4 };
+
+            Assert.IsFalse(_objectEquality.IsEqual(collectionA, collectionB));
+        }
+
+        [TestMethod]
+        public void TestClassCollection()
+        {
+            var collectionA = new List<SimpleClass> { new SimpleClass { Id = 1, Name = "Lamond Lu" } };
+            var collectionB = new List<SimpleClass> { new SimpleClass { Id = 1, Name = "Lamond Lu" } };
+
+            Assert.IsTrue(_objectEquality.IsEqual(collectionA, collectionB));
+        }
+
+        [TestMethod]
+        public void TestClassCollectionError()
+        {
+            var collectionA = new List<SimpleClass> { new SimpleClass { Id = 1, Name = "Lamond Lu" } };
+            var collectionB = new List<SimpleClass> { new SimpleClass { Id = 2, Name = "Lamond Lu" } };
+
+            Assert.IsFalse(_objectEquality.IsEqual(collectionA, collectionB));
         }
     }
 

@@ -11,50 +11,67 @@ namespace ObjectEquality
         {
             get
             {
-                return p => p.GetType().IsGenericType;
+                return p =>
+                {
+                    var type = p.GetType();
+
+                    if (type.IsGenericType)
+                    {
+                        var genericType = type.GetGenericArguments()[0];
+                        var genericCollectionType = typeof(IEnumerable<>).MakeGenericType(genericType);
+
+                        if (type.GetInterfaces().Any(x => x == genericCollectionType))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                    return false;
+                };
             }
         }
 
         public bool IsEqual(object source, object target)
         {
             var type = source.GetType();
-            var genericType = type.GetGenericArguments()[0];
 
-            var genericCollectionType = typeof(IEnumerable<>).MakeGenericType(genericType);
+            var countMethod = type.GetMethod("get_Count");
 
-            if (type.GetInterfaces().Any(p => p == genericCollectionType))
+            var sourceCount = (int)countMethod.Invoke(source, null);
+            var targetCount = (int)countMethod.Invoke(target, null);
+
+            if (sourceCount != targetCount)
             {
-                var countMethod = type.GetMethod("get_Count");
+                return false;
+            }
 
-                var sourceCount = (int)countMethod.Invoke(source, null);
-                var targetCount = (int)countMethod.Invoke(target, null);
+            //var genericType = type.GetGenericArguments()[0];
+            //var genericCollectionType = typeof(IEnumerable<>).MakeGenericType(genericType);
 
-                if (sourceCount != targetCount)
+            var sourceCollection = source as IEnumerable<object>;
+            var targetCollection = target as IEnumerable<object>;
+
+            if (ObjectEqualityOptions.Current.CollectionEqualityMode == CollectionEqualityMode.Strict)
+            {
+                for (var i = 0; i < sourceCount; i++)
                 {
-                    return false;
-                }
+                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceCollection.ElementAt(i)));
 
-                var sourceCollection = (source as IEnumerable<object>).ToList();
-                var targetCollection = (target as IEnumerable<object>).ToList();
+                    var result = equality.IsEqual(sourceCollection.ElementAt(i), targetCollection.ElementAt(i));
 
-                if (ObjectEqualityOptions.Current.CollectionEqualityMode == CollectionEqualityMode.Strict)
-                {
-                    for (var i = 0; i < sourceCount; i++)
+                    if (!result)
                     {
-                        var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(sourceCollection[i]));
-
-                        var result = equality.IsEqual(sourceCollection[i], targetCollection[i]);
-
-                        if (!result)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
-                else
-                {
-                    return CheckSameItems(sourceCollection, targetCollection);
-                }
+            }
+            else
+            {
+                return CheckSameItems(sourceCollection, targetCollection);
             }
 
             return true;
