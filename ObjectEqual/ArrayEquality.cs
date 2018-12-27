@@ -12,7 +12,7 @@ namespace ObjectEquality
         {
             get
             {
-                return p => p.GetType().IsArray;
+                return p => p.GetType().IsArray && (p as Array).Rank == 1;
             }
         }
 

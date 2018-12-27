@@ -330,6 +330,24 @@ namespace ObjectEquality.Test
             });
 
         }
+
+        [TestMethod]
+        public void TestTwoDimensionalArray()
+        {
+            var arrayA = new int[2, 3] { { 1, 1, 1 }, { 2, 2, 2 } };
+            var arrayB = new int[2, 3] { { 1, 1, 1 }, { 2, 2, 2 } };
+
+            Assert.IsTrue(_objectEquality.IsEqual(arrayA, arrayB));
+        }
+
+        [TestMethod]
+        public void TestTwoDimensionalWrong()
+        {
+            var arrayA = new int[2, 3] { { 1, 2, 3 }, { 2, 2, 3 } };
+            var arrayB = new int[2, 3] { { 1, 1, 3 }, { 2, 2, 3 } };
+
+            Assert.IsFalse(_objectEquality.IsEqual(arrayA, arrayB));
+        }
     }
 
 

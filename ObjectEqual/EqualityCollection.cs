@@ -10,6 +10,7 @@ namespace ObjectEquality
             new StructEquality(),
             new ValueTypeEquality(),
             new ArrayEquality(),
+            new TwoDimensionArrayEquality(),
             new GenericCollectionEquality(),
             new ClassEquality()
         };
