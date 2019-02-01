@@ -30,13 +30,22 @@ namespace ObjectEquality
 
             foreach (var prop in type.GetProperties())
             {
-                var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(prop.GetValue(source)));
+                var v = prop.GetValue(source);
 
-                var result = equality.IsEqual(prop.GetValue(source), prop.GetValue(target));
-
-                if (!result)
+                if (v != null)
                 {
-                    return false;
+                    var equality = EqualityCollection.Equalities.First(p => p.MatchCondition(v));
+
+                    var result = equality.IsEqual(prop.GetValue(source), prop.GetValue(target));
+
+                    if (!result)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return prop.GetValue(target) == v;
                 }
             }
 

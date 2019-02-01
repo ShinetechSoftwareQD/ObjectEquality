@@ -72,6 +72,24 @@ namespace ObjectEquality.Test
         }
 
         [TestMethod]
+        public void TestClassWithNullValue()
+        {
+            var a = new SimpleClass
+            {
+                Id = 1,
+                Name = null
+            };
+
+            var b = new SimpleClass
+            {
+                Id = 1,
+                Name = null
+            };
+
+            Assert.IsTrue(_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
         public void TestSimpleClassError()
         {
             var a = new SimpleClass
@@ -201,6 +219,20 @@ namespace ObjectEquality.Test
             var b = new DemoStruct();
             b.Id = 2;
             b.Name = "Test";
+
+            Assert.IsTrue(!_objectEquality.IsEqual(a, b));
+        }
+
+        [TestMethod]
+        public void TestNullStruct()
+        {
+            var a = new DemoStruct();
+            a.Id = 1;
+            a.Name = null;
+
+            var b = new DemoStruct();
+            b.Id = 2;
+            b.Name = null;
 
             Assert.IsTrue(!_objectEquality.IsEqual(a, b));
         }
