@@ -9,15 +9,13 @@
     <PackageProjectUrl>https://github.com/lamondlu/ObjectEquality</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lamondlu/ObjectEquality</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>1.0.7</Version>
-    <PackageReleaseNotes>v1.0.7
+    <Version>1.0.8</Version>
+    <PackageReleaseNotes>v1.0.8
 Fix the Null object issue
-
-v1.0.6
-
-- Fix the generic collection issue
-- Add support for tuple class</PackageReleaseNotes>
+</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/lamondlu/ObjectEquality/blob/master/LICENSE</PackageLicenseUrl>
+    <AssemblyVersion>1.0.8.0</AssemblyVersion>
+    <FileVersion>1.0.8.0</FileVersion>
   </PropertyGroup>
 
 </Project>
