@@ -45,7 +45,10 @@ namespace ObjectEquality
                 }
                 else
                 {
-                    return prop.GetValue(target) == v;
+                    if (prop.GetValue(target) != v)
+                    {
+                        return false;
+                    }
                 }
             }
 
